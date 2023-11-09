@@ -1,0 +1,60 @@
+/* styles.css */
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.centered-content {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* 読み取り領域の最大幅を広げました */
+    width: 100%;
+    position: relative; /* ポジションを相対に設定 */
+}
+
+#qrcode-scanner {
+    width: 100%;
+    height: auto;
+    max-height: 400px; /* 読み取り領域の最大高さを設定 */
+    /*overflow: hidden; !* 読み取り領域をはみ出す部分を非表示に *!*/
+    margin: 0 auto; /* 中央寄せ */
+}
+
+#scannerImage {
+    width: 100%;
+    height: auto;
+}
+
+#result {
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+#showMyQRCode {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.back-button {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    display: block;
+}

@@ -1,0 +1,57 @@
+/* ヘッダースタイル */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+}
+
+.back-button {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.chat-members-button {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* チャットメッセージスタイル */
+.chat-messages {
+    /* チャットメッセージのスタイルを追加 */
+}
+
+.chat-message {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.message-sender {
+    font-weight: bold;
+    color: #007BFF;
+}
+
+/* チャット入力スタイル */
+.chat-input {
+    display: flex;
+    margin-top: 20px;
+}
+
+.option-button {
+    font-size: 2rem;
+    cursor: pointer;
+    color: #007BFF;
+}
+
+#openOptions {
+    margin-right: 10px;
+    font-size: 2rem;
+}
+
+/* 送信ボタンのスタイル */
+.send-button {
+    /* 送信ボタンのスタイルを追加 */
+}
