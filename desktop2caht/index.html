@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -18,24 +18,8 @@
 </div>
 
 <div class="chat-container">
-    <div class="chat-messages">
-        <div class="chat-message">
-            <span class="message-sender">John:</span> Hello, how are you?
-        </div>
-        <div class="chat-message">
-            <span class="message-sender">Alice:</span> I'm good, thanks!
-        </div>
-        <div class="chat-message">
-            <span class="message-sender">Bob:</span> Hey, what's up?
-        </div>
-        <!-- 以下に追加のダミーメッセージを挿入 -->
-        <div class="chat-message">
-            <span class="message-sender">Eve:</span> Hi, everyone!
-        </div>
-        <div class="chat-message">
-            <span class="message-sender">Charlie:</span> Not much, just chilling.
-        </div>
-        <!-- ここまで -->
+    <div class="chat-messages" id="chatMessages">
+        <!-- メッセージはここに動的に追加されます -->
     </div>
 
     <!-- チャット入力と送信ボタン -->
@@ -48,51 +32,107 @@
     </div>
 </div>
 
-<!-- モーダルダイアログ（オプション画面） -->
-<div class="modal fade" id="optionsModal" tabindex="-1" role="dialog" aria-labelledby="optionsModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="optionsModalLabel">オプション</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- オプション画面のコンテンツを追加 -->
-                <i class="bi bi-qr-code-scan"></i>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                <!-- 他のボタンなどを追加 -->
-            </div>
-        </div>
+<!-- オプションポップアップ -->
+<div id="popupContainer" class="popup" style="display: none;">
+    <div class="popup-content">
+        <span class="close" id="closePopup">&times;</span>
+        <i class="bi bi-qr-code-scan"></i>
+        <i class="bi bi-brush"></i>
+    </div>
+</div>
+
+<!-- メンバー一覧を表示するポップアップ -->
+<div class="popup" id="membersPopup">
+    <div class="popup-content">
+        <span class="close" onclick="closeMembersPopup()">&times;</span>
+        <h2>メンバー一覧</h2>
+        <!-- メンバー一覧をここに表示 -->
+        <!-- 例: -->
+        <ul>
+            <li>John</li>
+            <li>Alice</li>
+            <li>Bob</li>
+            <!-- 他のメンバーをここに追加 -->
+        </ul>
     </div>
 </div>
 
 <script>
-    // オプションボタンをクリックしたときにモーダルを開く
-    var optionButton = document.getElementById('openOptions');
-    var optionsModal = document.getElementById('optionsModal');
+    // ダミーメッセージの配列（実際のアプリではサーバーから取得するなど動的に取得する必要があります）
+    const dummyMessages = [
+        { sender: 'John', message: 'Hello, how are you?' },
+        { sender: 'Alice', message: 'I\'m good, thanks!' },
+        { sender: 'Bob', message: 'Hey, what\'s up?' },
+        { sender: 'Eve', message: 'Hi, everyone!' },
+        { sender: 'Charlie', message: 'Not much, just chilling.' },
+    ];
 
-    optionButton.addEventListener('click', function () {
-        optionsModal.style.display = 'block';
-    });
+    // メッセージを表示する関数
+    function displayMessages() {
+        const chatMessages = document.getElementById('chatMessages');
+        chatMessages.innerHTML = ''; // 既存のメッセージをクリア
 
-    // モーダルを閉じる
-    var closeButtons = optionsModal.querySelectorAll('.close, [data-dismiss="modal"], .btn-secondary');
-    closeButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-            optionsModal.style.display = 'none';
+        dummyMessages.forEach(message => {
+            const div = document.createElement('div');
+            div.classList.add('chat-message');
+            div.innerHTML = `<span class="message-sender">${message.sender}:</span> ${message.message}`;
+            chatMessages.appendChild(div);
         });
+    }
+
+    // ページが読み込まれたときにメッセージを表示
+    document.addEventListener('DOMContentLoaded', function () {
+        displayMessages();
     });
 
-    // オプションモーダルの外側をクリックしても閉じる
-    window.addEventListener('click', function (event) {
-        if (event.target == optionsModal) {
-            optionsModal.style.display = 'none';
+    // 送信ボタンがクリックされたときの処理
+    document.querySelector('.send-button').addEventListener('click', function () {
+        const inputElement = document.querySelector('.chat-input input');
+        const message = inputElement.value.trim();
+
+        if (message !== '') {
+            // 実際のアプリではサーバーにメッセージを送信するなどの処理が必要です
+            dummyMessages.push({ sender: 'You', message });
+            displayMessages(); // メッセージを再表示
+            inputElement.value = ''; // 入力欄をクリア
         }
     });
+
+    // メンバーボタンがクリックされたときの処理
+    document.querySelector('.chat-members-button').addEventListener('click', function () {
+        // ポップアップを表示
+        document.getElementById('membersPopup').style.display = 'block';
+    });
+
+    // ポップアップを閉じる関数
+    function closeMembersPopup() {
+        document.getElementById('membersPopup').style.display = 'none';
+    }
+
+    // オプションボタンをクリックしてポップアップを表示
+    document.getElementById('openOptions').addEventListener('click', function () {
+        const popupContainer = document.getElementById('popupContainer');
+        popupContainer.style.display = 'block';
+    });
+
+    // ポップアップを閉じる
+    document.getElementById('closePopup').addEventListener('click', function () {
+        const popupContainer = document.getElementById('popupContainer');
+        popupContainer.style.display = 'none';
+    });
+
+    // QRコードアイコンがクリックされたときの処理
+    document.querySelector('.bi-qr-code-scan').addEventListener('click', function () {
+        // ここにQRコードスキャンへの遷移のコードを追加
+        alert('QRコードスキャンアクションが実行されました');
+    });
+
+    // ブラシアイコンがクリックされたときの処理
+    document.querySelector('.bi-brush').addEventListener('click', function () {
+        // ここにブラシアクションへの遷移のコードを追加
+        alert('ブラシアクションが実行されました');
+    });
+
 </script>
 </body>
 </html>
