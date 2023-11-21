@@ -10,14 +10,25 @@
   <link rel="stylesheet" href="/desktop5/css/style.css">
 </head>
 <body>
-<h1>jsQR Demo</h1>
-<a id="githubLink" href="https://github.com/cozmo/jsQR">View documentation on Github</a>
-<p>Pure JavaScript QR code decoding library.</p>
-<div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
-<canvas id="canvas" hidden></canvas>
-<div id="output" hidden>
-  <div id="outputMessage">No QR code detected.</div>
-  <div hidden><b>Data:</b> <span id="outputData"></span></div>
+<!--<h1>QRコード読み取り</h1>-->
+<!--<div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>-->
+<!--<canvas id="canvas" hidden></canvas>-->
+<!--<div id="output" hidden>-->
+<!--  <div id="outputMessage">No QR code detected.</div>-->
+<!--  <div hidden><b>Data:</b> <span id="outputData"></span></div>-->
+<!--</div>-->
+<!--<a href="myQRCodePage.html" class="btn btn-primary">Show My QR Code</a>-->
+<div class="container">
+  <h1>QR Code Reader</h1>
+  <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+  <canvas id="canvas" hidden></canvas>
+  <div id="output" hidden>
+    <div id="outputMessage">No QR code detected.</div>
+    <div hidden><b>Data:</b> <span id="outputData"></span></div>
+  </div>
+  <div class="btn-container">
+    <a href="myQRCodePage.html" class="btn btn-primary">Show My QR Code</a>
+  </div>
 </div>
 <script>
   var video = document.createElement("video");
