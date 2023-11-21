@@ -49,9 +49,8 @@
     <!-- チャット入力と送信ボタン -->
     <div class="chat-input">
 <!--        <i class="bi bi-plus-square option-button" id="openOptions"></i>-->
-        <!-- メンバー表示モーダルを開くボタン -->
+        <!-- オプションモーダルを開くボタン -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalOption"><i class="bi bi-plus-square option-button" id="openOptions"></i></button>
-        <!-- モーダルの内容 -->
         <div class="modal fade" id="myModalOption">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -63,6 +62,17 @@
                     </div>
                     <div class="modal-body">
                         <p>モーダルの内容をいろいろ書く！</p>
+                        <!-- 四角いアイコンとQRコードアイコンを表示するボタン -->
+                        <div class="btn-group" role="group">
+                            <!-- 四角いアイコン -->
+                            <a href="paint.html" class="btn btn-primary btn-modal square-icon">
+                                <i class="bi bi-brush"></i>
+                            </a>
+                            <!-- QRコードアイコン -->
+                            <a href="qrscan.html" class="btn btn-primary btn-modal square-icon">
+                                <i class="bi bi-qr-code-scan"></i>
+                            </a>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
